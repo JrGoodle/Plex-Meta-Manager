@@ -1,6 +1,9 @@
 
-# Created by https://www.toptal.com/developers/gitignore/api/linux,macos,python,windows,synology,pycharm+all
-# Edit at https://www.toptal.com/developers/gitignore?templates=linux,macos,python,windows,synology,pycharm+all
+# Created by https://www.toptal.com/developers/gitignore/api/linux,macos,python,windows,synology,pycharm+all,homebrew
+# Edit at https://www.toptal.com/developers/gitignore?templates=linux,macos,python,windows,synology,pycharm+all,homebrew
+
+### Homebrew ###
+Brewfile.lock.json
 
 ### Linux ###
 *~
@@ -327,4 +330,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/linux,macos,python,windows,synology,pycharm+all
+# End of https://www.toptal.com/developers/gitignore/api/linux,macos,python,windows,synology,pycharm+all,homebrew
