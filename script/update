@@ -6,7 +6,6 @@ cd "$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/.."
 . 'script/utils.sh'
 
 run "${PWD}/script/setup"
-
 . 'script/import.sh'
 
 h1 'Update Python Dependencies'

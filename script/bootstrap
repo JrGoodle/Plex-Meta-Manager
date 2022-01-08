@@ -4,7 +4,6 @@
 set -euo pipefail
 cd "$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/.."
 . 'script/utils.sh'
-
 . 'script/import.sh'
 
 case "$PLATFORM" in
@@ -20,7 +19,7 @@ case "$PLATFORM" in
                 /usr/bin/env bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
             fi
 
-            h2 'Install Homebrew formulas'
+            h2 'Update Homebrew formulas'
             run brew bundle
         else
             h2 'Skipping homebrew update on CI'

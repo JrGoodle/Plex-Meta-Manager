@@ -4,8 +4,6 @@
 set -euo pipefail
 cd "$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/.."
 . 'script/utils.sh'
-
-run "${PWD}/script/bootstrap"
 . 'script/import.sh'
 
 h1 'pyenv'
