@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC1091
+
+set -euo pipefail
+cd "$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/.."
+. 'script/utils.sh'
+
+run "${PWD}/script/setup"
+
+. 'script/import.sh'
+
+h3 'Install seedbox at user level'
+run pip install --user -e .
+
+h1 'Jackett'
+
+# TODO: Download latest release of Jackett from GitHub (https://github.com/Jackett/Jackett)
+
+script/jackett/update_gatekeeper
