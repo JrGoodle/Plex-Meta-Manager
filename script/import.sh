@@ -25,10 +25,6 @@ case "$PLATFORM" in
 
         # pyenv
         if command -v pyenv 1>/dev/null 2>&1; then eval "$(pyenv init -)" || true; fi
-
-        # PYTHONPATH
-        repo_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/.."
-        export PYTHONPATH="${repo_dir}:${PYTHONPATH-}"
         ;;
     linux)
         exit_failure 'Windows is not currently supported'
