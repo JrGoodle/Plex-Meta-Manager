@@ -9,11 +9,15 @@ run "${PWD}/script/setup"
 
 . 'script/import.sh'
 
-h3 'Install seedbox at user level'
-run pip install --user -e .
+h1 'Update Python Dependencies'
 
-h1 'Jackett'
+h2 'Update pip'
+run python -m pip install --upgrade pip
 
-# TODO: Download latest release of Jackett from GitHub (https://github.com/Jackett/Jackett)
+h2 'Pipenv'
 
-script/jackett/update_gatekeeper
+h3 'Update pipenv'
+run pip install --user --upgrade pipenv
+
+h3 'Update pipenv dependencies'
+run pipenv install --dev --site-packages

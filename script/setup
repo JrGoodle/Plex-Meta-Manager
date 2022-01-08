@@ -9,13 +9,8 @@ run "${PWD}/script/bootstrap"
 
 . 'script/import.sh'
 
-h1 'Python'
-h2 'Update pip'
-run pip install --upgrade pip
-h2 'Pipenv'
-h3 'Update pipenv'
-run pip install --user --upgrade pipenv
-h3 'Update pipenv dependencies'
-run pipenv install --dev
-h3 'Install seedbox in editable mode'
-run pipenv run pip install -e .
+h1 'Install pyenv python'
+
+python_version=$(cat .python-version)
+h2 "Install pyenv Python version $python_version"
+run pyenv install --skip-existing "$python_version"
