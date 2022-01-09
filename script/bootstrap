@@ -6,27 +6,32 @@ cd "$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/.."
 . 'script/utils.sh'
 . 'script/import.sh'
 
+update_homebrew() {
+    h1 'Homebrew'
+    if [ -z ${CI+x} ]; then
+        if command -v brew; then
+            h2 'Update Homebrew'
+            run brew update
+            run brew cleanup
+        else
+            h2 'Install Homebrew'
+            /usr/bin/env bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+        fi
+
+        h2 'Update Homebrew formulas'
+        run brew bundle
+    else
+        h2 'Skipping homebrew update on CI'
+    fi
+}
+
 case "$PLATFORM" in
     darwin)
-        h1 'Homebrew'
-        if [ -z ${CI+x} ]; then
-            if command -v brew; then
-                h2 'Update Homebrew'
-                run brew update
-                run brew cleanup
-            else
-                h2 'Install Homebrew'
-                /usr/bin/env bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-            fi
-
-            h2 'Update Homebrew formulas'
-            run brew bundle
-        else
-            h2 'Skipping homebrew update on CI'
-        fi
+        update_homebrew
         ;;
     linux)
-        # Nothing to do
+        sudo apt-get install build-essential procps curl file git
+        update_homebrew
         ;;
     windows)
         exit_failure 'Windows is not currently supported'
