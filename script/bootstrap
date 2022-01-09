@@ -8,32 +8,36 @@ cd "$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/.."
 
 update_homebrew() {
     h1 'Homebrew'
-    if [ -z ${CI+x} ]; then
-        if command -v brew; then
-            h2 'Update Homebrew'
-            run brew update
-            run brew cleanup
-        else
-            h2 'Install Homebrew'
-            /usr/bin/env bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-        fi
-
-        h2 'Update Homebrew formulas'
-        run brew bundle
+    if command -v brew; then
+        h2 'Update Homebrew'
+        run brew update
+        run brew cleanup
     else
-        h2 'Skipping homebrew update on CI'
+        h2 'Install Homebrew'
+        /usr/bin/env bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
     fi
+
+    h2 'Update Homebrew formulas'
+    run brew bundle
 }
 
-case "$PLATFORM" in
-    darwin)
+case "$(uname)" in
+    Darwin*)
         update_homebrew
         ;;
-    linux)
-        sudo apt-get install build-essential procps curl file git
+    Linux*)
+        if command -v apt-get; then
+            # Debian or Ubuntu
+            sudo apt-get install build-essential procps curl file git python3
+        elif command -v yum; then
+            # Fedora, CentOS, or Red Hat
+            sudo yum groupinstall 'Development Tools'
+            sudo yum install procps-ng curl file git
+            sudo yum install libxcrypt-compat # needed by Fedora 30 and up
+        fi
         update_homebrew
         ;;
-    windows)
+    CYGWIN*)
         exit_failure 'Windows is not currently supported'
         ;;
 esac
