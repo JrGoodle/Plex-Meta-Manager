@@ -28,7 +28,7 @@ case "$(uname)" in
     Linux*)
         if command -v apt-get; then
             # Debian or Ubuntu
-            sudo apt-get install build-essential procps curl file git python3
+            sudo apt-get install build-essential procps curl file git python3 python3-pip libffi-dev
         elif command -v yum; then
             # Fedora, CentOS, or Red Hat
             sudo yum groupinstall 'Development Tools'

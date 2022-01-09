@@ -17,14 +17,12 @@ case "$(uname)" in
         export PATH="$homebrew_python_path:$PATH"
         ;;
     Linux*)
-        brew_path="$HOME/linuxbrew/.linuxbrew/bin/brew"
+        brew_path="/home/linuxbrew/.linuxbrew/bin/brew"
         if [[ -x "$brew_path" ]]; then
             brew_env="$($brew_path shellenv)"
             eval "$brew_env"
-            # test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
-            # test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-            # test -r ~/.bash_profile && echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >>~/.bash_profile
-            # echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >>~/.profile
+            # echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/jrgoodle/.profile
+            # eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
         fi
         ;;
     CYGWIN*)
@@ -36,7 +34,7 @@ esac
 local_python_bin="$HOME/.local/bin"
 export PATH="$local_python_bin:$PATH"
 if command -v python; then
-    user_python_bin="$(python -m site --user-base)/bin"
+    user_python_bin="$(python3 -m site --user-base)/bin"
     export PATH="$user_python_bin:$PATH"
 fi
 
