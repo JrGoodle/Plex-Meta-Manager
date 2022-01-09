@@ -26,7 +26,7 @@ case "$PLATFORM" in
         fi
         ;;
     linux)
-        exit_failure 'Windows is not currently supported'
+        # Nothing to do
         ;;
     windows)
         exit_failure 'Windows is not currently supported'

@@ -6,9 +6,6 @@ cd "$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/.."
 . 'script/utils.sh'
 . 'script/import.sh'
 
-h1 'pyenv'
+config_path="../plex-config/plex-meta-manager/config.yml"
 
-python_version=$(cat .python-version)
-
-h2 "Install Python version $python_version"
-run pyenv install --skip-existing "$python_version"
+pipenv run python plex_meta_manager.py --config "$config_path" --run --debug --trace --width '140'

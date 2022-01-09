@@ -2,7 +2,6 @@
 
 case "$PLATFORM" in
     darwin)
-        h1 'Homebrew'
         # Homebrew
         intel_brew_path='/usr/local/bin/brew'
         m1_brew_path='/opt/homebrew/bin/brew'
@@ -27,7 +26,7 @@ case "$PLATFORM" in
         if command -v pyenv 1>/dev/null 2>&1; then eval "$(pyenv init -)" || true; fi
         ;;
     linux)
-        exit_failure 'Windows is not currently supported'
+        # Nothing to do
         ;;
     windows)
         exit_failure 'Windows is not currently supported'
